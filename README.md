@@ -30,6 +30,8 @@ Keep the folder where it is. Chrome loads the extension from that folder each ti
 - Dropdowns and modals that open with a click
 - The page as you see it, including pages you're signed in to
 
+Each saved file starts with a short credit line and a `generator` tag naming HTML Capture. Neither shows on the page.
+
 ## Limits
 
 - A file that takes longer than 15 seconds to load, or is larger than 20 MB, is skipped and stays linked to the live site. The extension tells you how many were skipped.

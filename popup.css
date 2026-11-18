@@ -15,10 +15,19 @@ body {
 }
 
 header {
-  padding-bottom: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   border-bottom: 1px solid #27272a;
   padding-bottom: 12px;
 }
+
+.by {
+  font-size: 11px;
+  color: #71717a;
+  text-decoration: none;
+}
+.by:hover { color: #a5b4fc; }
 
 .logo {
   display: flex;

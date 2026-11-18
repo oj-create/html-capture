@@ -1,10 +1,16 @@
 {
   "manifest_version": 3,
   "name": "HTML Capture",
-  "version": "1.0.0",
-  "description": "Capture any webpage as a fully self-contained HTML file with hover effects and interactions preserved.",
-  "permissions": ["activeTab", "scripting"],
-  "host_permissions": ["<all_urls>"],
+  "version": "1.1.0",
+  "description": "Save any web page as one self-contained HTML file, with hover effects and interactions preserved. By Ojelola Ojelabi.",
+  "homepage_url": "https://github.com/oj-create/html-capture",
+  "permissions": [
+    "activeTab",
+    "scripting"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
   "action": {
     "default_popup": "popup.html",
     "default_icon": {

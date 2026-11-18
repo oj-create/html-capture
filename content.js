@@ -489,7 +489,16 @@ if (!window.__htmlCaptureInjected) {
 
     // ── Serialize ─────────────────────────────────────────────────────────────
 
-    return '<!DOCTYPE html>\n' + clone.outerHTML;
+    const credit = 'Captured with HTML Capture by Ojelola Ojelabi. https://github.com/oj-create/html-capture';
+    const head = clone.querySelector('head');
+    if (head) {
+      const meta = document.createElement('meta');
+      meta.setAttribute('name', 'generator');
+      meta.setAttribute('content', 'HTML Capture by Ojelola Ojelabi');
+      const charset = head.querySelector('meta[charset]');
+      if (charset) charset.after(meta); else head.insertBefore(meta, head.firstChild);
+    }
+    return '<!DOCTYPE html>\n<!-- ' + credit + ' -->\n' + clone.outerHTML;
   }
 
   // ── Download ──────────────────────────────────────────────────────────────
