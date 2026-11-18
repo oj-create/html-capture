@@ -8,7 +8,7 @@ I built it to get real product screens for videos, articles and mockups, without
 
 ## Install (about 2 minutes)
 
-1. **Download** `html-capture.zip` from the [latest release](../../releases/latest).
+1. **Download** [html-capture.zip](https://github.com/oj-create/html-capture/releases/latest/download/html-capture.zip) from the latest release.
 2. **Unzip** it. You get a folder called `html-capture`.
 3. **Open** `chrome://extensions` in Chrome.
 4. **Turn on** Developer mode (the switch in the top right).
