@@ -1,0 +1,19 @@
+{
+  "manifest_version": 3,
+  "name": "HTML Capture",
+  "version": "1.0.0",
+  "description": "Capture any webpage as a fully self-contained HTML file with hover effects and interactions preserved.",
+  "permissions": ["activeTab", "scripting"],
+  "host_permissions": ["<all_urls>"],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "background": {
+    "service_worker": "background.js"
+  }
+}

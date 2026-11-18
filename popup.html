@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>HTML Capture</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="container">
+
+    <header>
+      <div class="logo">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+          <rect x="1.5" y="1.5" width="15" height="15" rx="3" stroke="#6366f1" stroke-width="1.5"/>
+          <path d="M6.5 6.5L4 9l2.5 2.5M11.5 6.5L14 9l-2.5 2.5M10.5 5.5l-3 7" stroke="#6366f1" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span>HTML Capture</span>
+      </div>
+    </header>
+
+    <!-- State: ready -->
+    <div id="state-ready" class="state">
+      <p class="subtitle">Save this page as a self-contained HTML file. Hover effects, dropdowns, and modals are preserved.</p>
+      <button id="captureBtn" class="btn btn-primary">Capture Page</button>
+    </div>
+
+    <!-- State: capturing -->
+    <div id="state-capturing" class="state hidden">
+      <div class="progress-wrap">
+        <div class="progress-label">
+          <span id="progressStage">Starting…</span>
+          <span id="progressCount"></span>
+        </div>
+        <div class="progress-track">
+          <div id="progressBar" class="progress-bar" style="width: 0%"></div>
+        </div>
+      </div>
+      <button class="btn btn-disabled" disabled>Capturing…</button>
+    </div>
+
+    <!-- State: complete -->
+    <div id="state-complete" class="state hidden">
+      <div class="result-row">
+        <div class="badge success">✓</div>
+        <div>
+          <div class="result-title">Download started</div>
+          <div id="resultMeta" class="result-meta"></div>
+        </div>
+      </div>
+      <button id="captureAgainBtn" class="btn btn-secondary">Capture Again</button>
+    </div>
+
+    <!-- State: error -->
+    <div id="state-error" class="state hidden">
+      <div class="result-row">
+        <div class="badge error">✕</div>
+        <div>
+          <div class="result-title">Capture failed</div>
+          <div id="errorMsg" class="result-meta"></div>
+        </div>
+      </div>
+      <button id="retryBtn" class="btn btn-secondary">Try Again</button>
+    </div>
+
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>

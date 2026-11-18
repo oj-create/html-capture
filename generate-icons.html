@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Generate HTML Capture Icons</title>
+  <style>
+    body { font-family: system-ui, sans-serif; background: #0f0f11; color: #e4e4e7; padding: 32px; }
+    h2 { font-size: 16px; font-weight: 600; margin-bottom: 8px; }
+    p  { font-size: 13px; color: #71717a; margin-bottom: 20px; line-height: 1.5; }
+    code { background: #27272a; padding: 2px 5px; border-radius: 4px; font-size: 12px; }
+    button {
+      padding: 10px 20px; background: #6366f1; color: #fff;
+      border: none; border-radius: 7px; font-size: 13px;
+      font-weight: 500; cursor: pointer;
+    }
+    button:hover { background: #4f46e5; }
+    canvas { display: none; }
+    .previews { display: flex; align-items: flex-end; gap: 16px; margin-top: 20px; }
+    .preview-item { text-align: center; }
+    .preview-item span { display: block; font-size: 11px; color: #52525b; margin-top: 4px; }
+  </style>
+</head>
+<body>
+  <h2>HTML Capture — Icon Generator</h2>
+  <p>
+    Click the button to generate and download the three PNG icon files.<br>
+    Move <code>icon16.png</code>, <code>icon48.png</code>, and <code>icon128.png</code>
+    into the <code>html-capture/icons/</code> folder.
+  </p>
+  <button onclick="generateAll()">Download All Icons</button>
+
+  <div class="previews" id="previews"></div>
+  <canvas id="c"></canvas>
+
+  <script>
+    function drawIcon(size) {
+      const canvas = document.getElementById('c');
+      canvas.width = canvas.height = size;
+      const ctx = canvas.getContext('2d');
+      const radius = Math.max(2, size * 0.17);
+
+      // Background
+      ctx.fillStyle = '#18181b';
+      roundRect(ctx, 0, 0, size, size, radius);
+      ctx.fill();
+
+      // Icon strokes
+      ctx.strokeStyle = '#6366f1';
+      ctx.lineWidth = Math.max(1, size * 0.085);
+      ctx.lineCap = 'round';
+      ctx.lineJoin = 'round';
+
+      const cx = size / 2;
+      const cy = size / 2;
+      const s  = size * 0.27;
+
+      // < left bracket
+      ctx.beginPath();
+      ctx.moveTo(cx - s * 0.2, cy - s * 0.6);
+      ctx.lineTo(cx - s * 0.85, cy);
+      ctx.lineTo(cx - s * 0.2, cy + s * 0.6);
+      ctx.stroke();
+
+      // > right bracket
+      ctx.beginPath();
+      ctx.moveTo(cx + s * 0.2, cy - s * 0.6);
+      ctx.lineTo(cx + s * 0.85, cy);
+      ctx.lineTo(cx + s * 0.2, cy + s * 0.6);
+      ctx.stroke();
+
+      // / slash
+      ctx.beginPath();
+      ctx.moveTo(cx + s * 0.15, cy - s * 0.7);
+      ctx.lineTo(cx - s * 0.15, cy + s * 0.7);
+      ctx.stroke();
+
+      return canvas.toDataURL('image/png');
+    }
+
+    function roundRect(ctx, x, y, w, h, r) {
+      ctx.beginPath();
+      ctx.moveTo(x + r, y);
+      ctx.lineTo(x + w - r, y);
+      ctx.arcTo(x + w, y, x + w, y + r, r);
+      ctx.lineTo(x + w, y + h - r);
+      ctx.arcTo(x + w, y + h, x + w - r, y + h, r);
+      ctx.lineTo(x + r, y + h);
+      ctx.arcTo(x, y + h, x, y + h - r, r);
+      ctx.lineTo(x, y + r);
+      ctx.arcTo(x, y, x + r, y, r);
+      ctx.closePath();
+    }
+
+    function generateAll() {
+      const previews = document.getElementById('previews');
+      previews.innerHTML = '';
+
+      [16, 48, 128].forEach(size => {
+        const dataUrl = drawIcon(size);
+
+        // Download
+        const a = document.createElement('a');
+        a.href = dataUrl;
+        a.download = `icon${size}.png`;
+        a.click();
+
+        // Preview
+        const div = document.createElement('div');
+        div.className = 'preview-item';
+        const img = document.createElement('img');
+        img.src = dataUrl;
+        img.width = size > 48 ? 64 : size;
+        img.height = size > 48 ? 64 : size;
+        img.style.imageRendering = 'pixelated';
+        const label = document.createElement('span');
+        label.textContent = `${size}px`;
+        div.appendChild(img);
+        div.appendChild(label);
+        previews.appendChild(div);
+      });
+    }
+  </script>
+</body>
+</html>
